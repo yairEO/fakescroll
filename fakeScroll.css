@@ -11,8 +11,8 @@
     position        : relative;
     right           : -18px;
     overflow        : auto;
-    -moz-box-sizing : padding-box;
-    box-sizing      : padding-box;
+    -moz-box-sizing : border-box;
+    box-sizing      : border-box;
 }
 
 .fakeScrollBar{
