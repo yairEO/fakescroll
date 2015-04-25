@@ -20,6 +20,9 @@ The internet deserves a performant custom scrollbar script that is flexiable, ea
     <div class="fakeScroll">
         <div class="scrollWrap">
             <div class="scrollContent">
+                ...
+                ...
+                ...
             </div>
         </div>
         <div class="fakeScrollBar"></div>
