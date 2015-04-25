@@ -4,7 +4,7 @@ fakeScroll
 ### [DEMO PAGE](http://yaireo.github.io/fakescroll)
 
 Uber lightweight & robust scrollbar replacement jQuery plugin.
-The internet deserves a performant scrollbar replacement script that is flexiable, easy to use and only weights 4k.
+The internet deserves a performant custom scrollbar script that is flexiable, easy to use and only weights 4k.
 
 
 ## Your markup
