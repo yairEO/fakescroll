@@ -40,7 +40,7 @@
         $el.on('mousedown.drag', function(e) {
             lastPageY = e.pageY;
             $el.addClass('grabbed');
-            $doc.on('mousemove.drag', drag).mouseup(stop);
+            $doc.on('mousemove.drag', drag).on('mouseup.drag', stop);
             return false;
         });
 
