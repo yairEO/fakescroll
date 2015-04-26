@@ -14,7 +14,7 @@
 
         defaults = {};
 
-    jQuery.fn.fakeScroll = function(settings){
+    jQuery.fn[pluginName] = function(settings){
         return this.each(function(){
 
             var $el = $(this), // convert window to the HTML element
