@@ -7,7 +7,7 @@ Uber lightweight & robust scrollbar replacement jQuery plugin.
 The internet deserves a performant custom scrollbar script that is flexiable, easy to use and only weights 4k.
 
 
-## Example code of an element which needs a custom scrollbar:
+## Example markup for typical use-case
 
     <div class="fakeScroll">
         ...
