@@ -61,22 +61,22 @@
 
     // Constructor
     function FakeScroll($el, settings){
+		// this.id = new Array(8).join((Math.random().toString(36)+'00000000000000000').slice(2, 18)).slice(0, 7); // generate an UID for each instance
         this.el = $el;
         this.bar = $('<div class="fakeScrollBar">');
-
-        dragDealer(this.bar, this);
-
         this.settings = $.extend({}, settings, defaults);
         this.callback = settings.callback ? settings.callback : null;
         this.maxScrollSoFar = 0;
 
         // insert the fake scroll bar into the container
         this.bar.appendTo(this.el.closest('.' + pluginName));
+        // initiate drag controller on the instance
+		dragDealer(this.bar, this);
         // run "moveBar" once
         this.moveBar();
 
-        this.el.on('scroll.fakeScroll', this.moveBar.bind(this) );
-        $(win).on('resize.fakeScroll', this.moveBar.bind(this) );
+        this.el.on('scroll.fakeScroll mouseenter.fakeScroll', this.moveBar.bind(this) );
+       // $(win).on('resize.fakeScroll.' + this.id, this.moveBar.bind(this) );
     }
 
     FakeScroll.prototype = {
