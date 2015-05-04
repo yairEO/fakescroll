@@ -1,10 +1,11 @@
-////////////////////////////////////////
+/////////////////////////////////////////////////////////
 // fakeScroll - a custom scroll bar jQuery plugin
+// By Yair Even-Or - https://github.com/yairEO/fakescroll
+
 ;(function($, win){
     "use strict";
 
-    var pluginName = "fakeScroll",
-        docElm = document.documentElement,
+    var docElm = document.documentElement,
         $doc   = $(document),
         raf = win.requestAnimationFrame
            || win.webkitRequestAnimationFrame
@@ -14,9 +15,8 @@
 
         defaults = {};
 
-    jQuery.fn[pluginName] = function(settings){
-        return this.each(function(){
-
+    jQuery.fn.fakeScroll = function(settings){
+        return this.each(function(idx, selector){
             var $el = $(this), // convert window to the HTML element
                 fakeScroll;
 
@@ -24,10 +24,8 @@
             if( $el.data('_fakeScroll') )
                 return;
 
-            // wrap with needed DOM structure
-            $el.wrapInner('<div class="scrollWrap"><div class="scrollContent"></div></div>');
             // create a new FakeScroll instance
-            fakeScroll = new FakeScroll($el.find('.scrollContent'), settings || {});
+            fakeScroll = new FakeScroll($el, settings || {});
             // bind the FakeScroll instance to the DOM component
             $el.data('_fakeScroll', fakeScroll);
         });
@@ -62,14 +60,17 @@
     // Constructor
     function FakeScroll($el, settings){
         // this.id = new Array(8).join((Math.random().toString(36)+'00000000000000000').slice(2, 18)).slice(0, 7); // generate an UID for each instance
-        this.el = $el;
+        this.target = $el;
         this.bar = $('<div class="fakeScrollBar">');
         this.settings = $.extend({}, settings, defaults);
         this.callback = settings.callback ? settings.callback : null;
         this.maxScrollSoFar = 0;
 
+        // wrap with needed DOM structure
+        this.el = this.target.wrapInner('<div class="scrollWrap"><div class="scrollContent"></div></div>').find('.scrollContent');
+
         // insert the fake scroll bar into the container
-        this.bar.appendTo(this.el.closest('.' + pluginName));
+        this.bar.appendTo(this.el.closest(this.target));
         // initiate drag controller on the instance
         dragDealer(this.bar, this);
         // run "moveBar" once
@@ -96,5 +97,4 @@
             });
         }
     }
-
 })(jQuery, window);
