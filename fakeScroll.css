@@ -20,31 +20,20 @@
     background          : rgba(255,255,255,.5);
     width               : 9px;
     border-radius       : 4px;
-    right               : -5px;
+    right               : -15px;
     top                 : 0;
     z-index             : 0;
     cursor              : -moz-grab;
     cursor              : -webkit-grab;
-    transition          : .25s .3s cubic-bezier(0,.64,.38,1);
-    transition-property : transform, background, right, width, opacity;
 }
 
-.fakeScroll:hover .fakeScrollBar{
-    background       : rgba(255,255,255,.7);
-    opacity          : 1;
-    right            : -15px;
-    transition-delay : 0s;
-}
-
-.fakeScroll:hover .fakeScrollBar:hover{
-    background : rgba(255,255,255,.85);
-}
-
-.fakeScrollBar.grabbed,
-.fakeScroll:hover .fakeScrollBar:active{
-    cursor     : -moz-grabbed;
-    cursor     : -webkit-grabbed;
-    right      : -15px;
-    opacity    : 1;
+.fakeScroll:hover .fakeScrollBar.fakescroll-grabbed{
+    cursor     : -moz-grabbing;
+    cursor     : -webkit-grabbing;
     background : #FFF;
+}
+
+body.fakescroll-grabbed{
+    cursor     : -moz-grabbing;
+    cursor     : -webkit-grabbing;
 }

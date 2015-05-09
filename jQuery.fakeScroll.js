@@ -37,7 +37,7 @@
 
         $el.on('mousedown.drag', function(e) {
             lastPageY = e.pageY;
-            $el.addClass('grabbed');
+            $el.add(document.body).addClass('fakescroll-grabbed');
             $doc.on('mousemove.drag', drag).on('mouseup.drag', stop);
             return false;
         });
@@ -52,7 +52,7 @@
         }
 
         function stop() {
-            $el.removeClass('grabbed');
+            $el.add(document.body).removeClass('fakescroll-grabbed');
             $doc.off("mousemove.drag mouseup.drag");
         }
     }
