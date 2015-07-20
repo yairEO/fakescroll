@@ -1,0 +1,13 @@
+{
+  "name": "fakescroll",
+  "version": "0.0.0",
+  "homepage": "https://github.com/yairEO/fakescroll",
+  "main": [
+    "./fakeScroll.css",
+    "./jQuery.fakeScroll.js"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*"
+  ]
+}
