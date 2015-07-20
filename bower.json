@@ -1,0 +1,9 @@
+{
+  "name": "fakescroll",
+  "version": "0.0.0",
+  "homepage": "https://github.com/yairEO/fakescroll",
+  "license": "MIT",
+  "ignore": [
+    "**/.*"
+  ]
+}
