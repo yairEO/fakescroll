@@ -1,0 +1,50 @@
+.scrollWrap{
+    overflow : hidden;
+    height   : 100%;
+    position : relative;
+    z-index  : 1;
+}
+.scrollContent{
+    height          : 100%;
+    width           : 100%;
+    padding         : 0 32px 0 0;
+    position        : relative;
+    right           : -18px;
+    overflow        : auto;
+    -moz-box-sizing : border-box;
+    box-sizing      : border-box;
+}
+
+.fakeScrollBar{
+    position            : absolute;
+    background          : rgba(255,255,255,.5);
+    width               : 9px;
+    border-radius       : 4px;
+    right               : -5px;
+    top                 : 0;
+    z-index             : 0;
+    cursor              : -moz-grab;
+    cursor              : -webkit-grab;
+    transition          : .25s .3s cubic-bezier(0,.64,.38,1);
+    transition-property : transform, background, right, width, opacity;
+}
+
+.fakeScroll:hover .fakeScrollBar{
+    background       : rgba(255,255,255,.7);
+    opacity          : 1;
+    right            : -15px;
+    transition-delay : 0s;
+}
+
+.fakeScroll:hover .fakeScrollBar:hover{
+    background : rgba(255,255,255,.85);
+}
+
+.fakeScrollBar.fakescroll-grabbed,
+.fakeScroll:hover .fakeScrollBar:active{
+    cursor     : -moz-grabbed;
+    cursor     : -webkit-grabbed;
+    right      : -15px !important;
+    opacity    : 1;
+    background : #FFF;
+}
