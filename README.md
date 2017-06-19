@@ -28,7 +28,13 @@ The internet deserves a performant custom scrollbar script that is flexible, eas
         <div class="fakeScrollBar"></div>
     </div>
 
-## initializing
+## Initializing
 
     $('.fakeScroll').fakeScroll();
 
+## Settings
+
+Name                | Type       | Default     | Info
+------------------- | ---------- | ----------- | --------------------------------------------------------------------------
+theme               | String     | undefined   | Class name which is added to the ".fakeScrollBar" element
+offset              | String     | 0 0 0 0     | scroll offset (currently only the top value is taken into account)
