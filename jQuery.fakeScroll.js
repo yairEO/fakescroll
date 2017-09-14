@@ -7,9 +7,11 @@
 
     var docElm = document.documentElement,
         $doc   = $(document),
-        raf = win.requestAnimationFrame || function(cb) { return win.setTimeout(cb, 1000 / 60); },
+        raf = win.requestAnimationFrame || function(cb) { return win.setTimeout(cb, 1000 / 60) },
         defaults = {
-            offset : "0 0 0 0"
+            offset       : "0 0",
+            sensitivity  : 1,
+            minBarSizer : 50
         };
 
     jQuery.fn.fakeScroll = function(settings){
@@ -34,8 +36,8 @@
     function FakeScroll($el, settings){
         // this.id = new Array(8).join((Math.random().toString(36)+'00000000000000000').slice(2, 18)).slice(0, 7); // generate an UID for each instance
         this.target = $el;
-        this.bar = $('<div class="fakeScrollBar">').addClass(settings.theme);
         this.settings = $.extend({}, defaults, settings);
+        this.bar = $('<div class="fakeScrollBar">').addClass(settings.theme);
         this.settings.offset = this.settings.offset.split(' '); // convert offset String to Array
 
         this.callback = settings.callback ? settings.callback : null;
@@ -66,7 +68,6 @@
                 $el = this.bar,
                 that = this;
 
-
             $el.on('mousedown.fs_drag', function(e) {
                 lastPageY = e.pageY;
                 $el.add(document.body).addClass('fakescroll-grabbed');
@@ -78,9 +79,9 @@
                 var delta     = e.pageY - lastPageY;
                     lastPageY = e.pageY;
 
-                raf(function(){
-                    that.el[0].scrollTop += delta / that.scrollRatio;
-                });
+               // raf(function(){
+                    that.el[0].scrollTop += delta * that.settings.sensitivity / that.scrollRatio;
+               // });
             }
 
             function stop() {
@@ -92,19 +93,38 @@
         moveBar: function(e){
             if( !this.el || !this.el[0] ) return false;
 
-            var totalHeight = this.el[0].scrollHeight,
-                ownHeight   = this.el[0].clientHeight,
+            var totalHeight = this.el[0].scrollHeight, // the bigger value
+                ownHeight   = this.el[0].clientHeight, // the inner value
                 that        = this;
+
 
             this.scrollRatio = ownHeight / totalHeight;
 
             // update fake scrollbar location on the Y axis using requestAnimationFrame
             raf(function(){
-                var height = (ownHeight / totalHeight) * 100,
-                    top = (that.el[0].scrollTop / totalHeight ) * 100;
+                var ratio = (ownHeight / totalHeight) * 100,
+                    scroll_percent = (that.el[0].scrollTop / (totalHeight - ownHeight)) * 100,
+                    scrollBarSizeInPixels = ratio/100 * ownHeight,
+                    offset,
+                    height;
 
-                that.bar[0].style.cssText = "height : calc("+ height + "% - " + that.settings.offset[0] + "px); \
-                                             top    : calc("+ top    + "% + " + that.settings.offset[0] + "px);";
+                if( scrollBarSizeInPixels < that.settings.minBarSizer ){
+                    height = that.settings.minBarSizer + "px";
+                    scrollBarSizeInPixels = that.settings.minBarSizer;
+                }
+                else
+                    height = ratio + "% - " + 0 + "px";
+
+                // adjust the offset according to the scroll percentage, so at "0%" the offset will be the maximum
+                // start-offset (in "px"), at "50%" the offset should be "0"
+                offset = scroll_percent < 50 ?
+                    that.settings.offset[0] - (that.settings.offset[0] * scroll_percent/50) :
+                    that.settings.offset[1] * (1 - scroll_percent/50);
+
+                that.bar[0].style.cssText = "height : calc("+ height + "); \
+                                             top    : calc("+ scroll_percent + "% + " + offset + "px); \
+                                             transform: translateY(-"+ scroll_percent +"%);";
+
             });
 
             this.bar.toggleClass('enabled', totalHeight > ownHeight);

@@ -1,6 +1,6 @@
 {
   "name": "fakescroll",
-  "version": "1.0.0",
+  "version": "1.5.0",
   "description": "super lightweight & robust scrollbar replacement jQuery plugin. The internet deserves a performant custom scrollbar script that is flexible, easy to use and only weights 4k.
 ",
   "main": [
