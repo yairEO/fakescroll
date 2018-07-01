@@ -15,7 +15,6 @@
 
         // run "moveBar" once
         setTimeout(this.moveBar.bind(this));
-
     }
 
     FakeScroll.prototype = {
@@ -182,9 +181,12 @@
         }
     }
 
+    /**
+     * Extend the DOM with "fakeScroll" method. The chances of the same name already be taken are slim to none,
+     * But you should now; it's your code you're putting this into.
+     */
     Element.prototype.fakeScroll = function( settings ){
         this._fakeScroll = this._fakeScroll || new FakeScroll(this, settings || {});
-
         return this._fakeScroll;
     }
 })();
