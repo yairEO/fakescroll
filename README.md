@@ -5,6 +5,7 @@ fakeScroll
 
 Very lightweight & robust custom-looking scrollbar script.
 
+> Currently only supports vertical scroll due to coltural popularity
 
 ## Example markup:
 
@@ -31,6 +32,9 @@ Very lightweight & robust custom-looking scrollbar script.
         <div class="fakeScroll__bar"></div>
     </div>
 
+## Browser support
+
+The script probably won't work on IE without [Babel](https://babeljs.io/docs/en/babel-cli) & [ES2015 polyfills](https://github.com/paulmillr/es6-shim).
 
 
 ## Settings
@@ -38,5 +42,4 @@ Very lightweight & robust custom-looking scrollbar script.
 Name                | Type            | Default     | Info
 ------------------- | ----------      | ----------- | --------------------------------------------------------------------------
 classname           | String          | ""          | Class name which is added to the ".fakeScrollBar" element
-offset              | String          | 0 0 0 0     | scroll offset
 track               | Boolean/String  | false       | enable track events. use "smooth" for smooth "jumping"

@@ -5,7 +5,6 @@
         if( !targetElm ) return;
 
         this.settings = Object.assign({}, this.defaults, settings || {});
-        this.settings.offset = this.settings.offset.split(' '); // convert offset String to Array
         this.callback = settings.callback ? settings.callback : null;
 
         this.state = {};
@@ -22,8 +21,7 @@
     FakeScroll.prototype = {
         defaults : {
             classname : "",
-            track     : false,
-            offset    : "0 0 0 0"
+            track     : false // "smooth" will enable smooth scroll
         },
 
         /**
@@ -159,8 +157,8 @@
                 var height = (ownHeight / scrollHeight) * 100,
                     top = (_scrollContent.scrollTop / scrollHeight ) * 100;
 
-                this.DOM.bar.style.cssText = `height  : calc(${height}% - ${this.settings.offset[0]}px);
-                                              top     : calc(${top}% + ${this.settings.offset[0]}px);
+                this.DOM.bar.style.cssText = `height  : ${height}%;
+                                              top     : ${top}%;
                                               display : ${scrollHeight <= ownHeight ? 'none' : ''}`;
             });
         }
