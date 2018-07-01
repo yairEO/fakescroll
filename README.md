@@ -5,7 +5,7 @@ fakeScroll
 
 Very lightweight & robust custom-looking scrollbar script.
 
-> Currently only supports vertical scroll due to coltural popularity
+> Currently only supports vertical scroll due to cultural norms
 
 ## Example markup:
 
