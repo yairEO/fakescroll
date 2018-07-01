@@ -10,6 +10,10 @@ Very lightweight & robust custom-looking HTML scrollbar script.
 
 > Currently only supports vertical scroll due to cultural norms
 
+While there is somewhat of a support for scrollbar customization [through CSS](https://atomiks.github.io/30-seconds-of-css/#custom-scrollbar), it is not fully supported
+in all browsers / older versions and the level of customization isn't flexible enough to allow creativity or certain special product needs.
+
+
 ## Example markup:
 
     <div class="foo">
