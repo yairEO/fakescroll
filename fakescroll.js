@@ -32,8 +32,8 @@
                 scopeHTML = `<div class="fakeScroll__wrap">
                                 <div class="fakeScroll__content"></div>
                              </div>
-                             <div class='fakeScroll__track'>
-                                <div class="fakeScroll__bar ${this.settings.classname}"></div>
+                             <div class='fakeScroll__track ${this.settings.classname}'>
+                                <div class="fakeScroll__bar"></div>
                              </div>`,
                 fragment = document.createDocumentFragment();
 

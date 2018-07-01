@@ -41,5 +41,5 @@ The script probably won't work on IE without [Babel](https://babeljs.io/docs/en/
 
 Name                | Type            | Default     | Info
 ------------------- | ----------      | ----------- | --------------------------------------------------------------------------
-classname           | String          | ""          | Class name which is added to the ".fakeScrollBar" element
+classname           | String          | ""          | Class name which is added to the scrollbar Track element
 track               | Boolean/String  | false       | enable track events. use "smooth" for smooth "jumping"
