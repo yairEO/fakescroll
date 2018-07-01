@@ -3,40 +3,40 @@ fakeScroll
 
 ### [DEMO PAGE](http://yaireo.github.io/fakescroll)
 
-Uber lightweight & robust custom scrollbar replacement jQuery plugin.
-The internet deserves a performant custom scrollbar script that is flexible, easy to use and only weights ~5.4k.
+Very lightweight & robust custom-looking scrollbar script.
 
 
-## Example markup for typical use-case
+## Example markup:
 
-    <div class="fakeScroll">
+    <div class="foo">
         ...
         ...
         ...
     </div>
 
-## The above will become this (once plugin is applied):
+## Initializing:
 
-    <div class="fakeScroll">
-        <div class="scrollWrap">
-            <div class="scrollContent">
+    document.querySelector('.foo').fakeScroll();
+
+## The above will transform into this:
+
+    <div class="foo">
+        <div class="fakeScroll__wrap">
+            <div class="fakeScroll__content">
                 ...
                 ...
                 ...
             </div>
         </div>
-        <div class="fakeScrollBar"></div>
+        <div class="fakeScroll__bar"></div>
     </div>
 
-## Initializing
 
-    $('.fakeScroll').fakeScroll();
 
 ## Settings
 
-Name                | Type       | Default     | Info
-------------------- | ---------- | ----------- | --------------------------------------------------------------------------
-theme               | String     | undefined   | Class name which is added to the ".fakeScrollBar" element
-offset              | String     | 0 0         | scroll offset, from start and end
-sensitivity         | Number     | 1           | scroll sensitivity multiplier
-minBarSizer         | Number     | 50          | Minimum size for the fake scroll bar, in pixels
+Name                | Type            | Default     | Info
+------------------- | ----------      | ----------- | --------------------------------------------------------------------------
+classname           | String          | ""          | Class name which is added to the ".fakeScrollBar" element
+offset              | String          | 0 0 0 0     | scroll offset
+track               | Boolean/String  | false       | enable track events. use "smooth" for smooth "jumping"

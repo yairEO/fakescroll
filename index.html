@@ -26,32 +26,45 @@
                 background-image: radial-gradient(        top, circle cover, #3c3b52 0%, #252233 100%);
             }
 
-            .fakeScroll{ position:absolute; top:0; right:0; bottom:0; left:0; margin:auto; min-height:70%; height:1px; width:500px; }
-            .fakeScroll .scrollContent{ padding-top:1em; padding-bottom:1em; }
-            .fakeScroll .scrollWrap{ background:#FFF; border-radius:4px; -moz-box-sizing:border-box; box-sizing:border-box; }
+            .foo{ position:absolute; top:0; right:0; bottom:0; left:0; margin:auto; min-height:70%; height:1px; width:500px; }
+            .foo .fakeScroll__content{ padding-top:1em; padding-bottom:1em; }
+            .foo .fakeScroll__wrap{ background:#FFF; border-radius:4px; -moz-box-sizing:border-box; box-sizing:border-box; }
 
             /* upper and bottom fades */
-            .scrollWrap::before{ content:''; position:absolute; z-index:1; top:0; left:0; right:0; height:5%;
+            .fakeScroll__wrap::before{ content:''; position:absolute; z-index:1; top:0; left:0; right:0; height:5%;
                 background: -webkit-linear-gradient(#FFF 0%, rgba(255,255,255,0) 100%);
                 background: -o-linear-gradient(#FFF 0%, rgba(255,255,255,0) 100%);
                 background: linear-gradient(#FFF 0%, rgba(255,255,255,0) 100%);
             }
 
-            .scrollWrap::after{ content:''; position:absolute; z-index:1; bottom:0; left:0; right:0; height:5%;
+            .fakeScroll__wrap::after{ content:''; position:absolute; z-index:1; bottom:0; left:0; right:0; height:5%;
                 background: -webkit-linear-gradient(rgba(255,255,255,0) 0%, #FFF 100%);
                 background: -o-linear-gradient(rgba(255,255,255,0) 0%, #FFF 100%);
                 background: linear-gradient(rgba(255,255,255,0) 0%, #FFF 100%);
             }
 
-            .fakeScroll--inside{ min-height:40%; }
+            /* .fakeScroll--inside .fakeScroll__content::after{ content:''; display:block; min-height:10000px; } */
 
-            .fakeScroll--inside .fakeScrollBar{
-                background: #252233;
-                right: 3px;
+
+            .foo--inside .fakeScroll__track{
+                background: rgba(0,0,0,.2);
+                right: 0;
+                top: 10%;
+                bottom: 10%;
                 z-index: 1;
+                padding: 10px 3px;
+                border-radius: 20px 0 0 20px;
+                transition: .1s;
             }
 
-            .fakeScroll--inside:hover .fakeScrollBar.fakescroll-grabbed{
+            .foo--inside .fakeScroll__track:hover{
+                background: rgba(0,0,0,.1);
+                width: 12px;
+            }
+
+            .foo--inside .fakeScroll__bar{ background: #252233; }
+
+            .foo--inside:hover .fakeScroll__bar.fakeScroll--grabbed{
                 background: #3c3b52;
             }
         </style>
@@ -60,7 +73,9 @@
         <a href="https://github.com/yairEO/fakescroll">GitHub Repo »</a>
 
         <section>
-            <div class='fakeScroll fakeScroll--outside'>
+            <div class='foo foo--outside'>
+                <h2>This text can be edited</h2>
+                <h3>In this example the scrollbar is outside of the scrollable area and the "track" is not enabled</h3>
                 <p>Uber lightweight &amp; robust scrollbar replacement jQuery plugin. The internet deserves a performant custom scrollbar script that is flexible, easy to use and only weights 4k.</p>
                 <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.</p>
                 <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.</p>
@@ -88,17 +103,14 @@
         </section>
 
         <section>
-            <div class='fakeScroll fakeScroll--inside'>
+            <div class='foo foo--inside'>
+                <h2>This text can be edited</h2>
+                <h3>In this example the scrollbar is within the scrollable area and has an offset from the top and bottom (via CSS). The scrollbar also has the "track" setting enabled</h3>
                 <p>Uber lightweight &amp; robust scrollbar replacement jQuery plugin. The internet deserves a performant custom scrollbar script that is flexible, easy to use and only weights 4k.</p>
                 <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.</p>
                 <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.</p>
                 <p>Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium.</p>
                 <p>Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim.</p>
-                <p>Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue.</p>
-                <p>Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum.</p>
-                <p>Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante.</p>
-                <p>Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna.</p>
-                <p>Sed consequat, leo eget bibendum sodales, augue velit cursus nunc, quis gravida magna mi a libero. Fusce vulputate eleifend sapien. Vestibulum purus quam, scelerisque ut, mollis sed, nonummy id, metus.</p>
                 <p>Nullam accumsan lorem in dui. Cras ultricies mi eu turpis hendrerit fringilla. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; In ac dui quis mi consectetuer lacinia. Nam pretium turpis et arcu.</p>
                 <p>Duis arcu tortor, suscipit eget, imperdiet nec, imperdiet iaculis, ipsum. Sed aliquam ultrices mauris. Integer ante arcu, accumsan a, consectetuer eget, posuere ut, mauris. Praesent adipiscing. Phasellus ullamcorper ipsum rutrum nunc. Nunc nonummy metus. Vestibulum volutpat pretium libero. Cras id dui. Aenean ut</p>
                 <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.</p>
@@ -115,17 +127,17 @@
             </div>
         </section>
 
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-        <script src="jQuery.fakeScroll.js"></script>
+        <script src="fakeScroll.js"></script>
+
         <script>
-            $('.fakeScroll--outside').fakeScroll({
-                sensitivity: .6
+            document.querySelector('.foo--outside').fakeScroll();
+
+            document.querySelector('.foo--inside').fakeScroll({
+                track : "smooth"
             });
-            $('.fakeScroll--inside').fakeScroll({
-                offset       : "10 10",
-                sensitivity  : 1.2,
-                minBarSizer : 50
-            });
+
+            for( let elm of document.querySelectorAll('.fakeScroll__content') )
+                elm.setAttribute('contenteditable', true)
         </script>
     </body>
 </html>

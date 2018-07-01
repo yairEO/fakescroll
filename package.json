@@ -1,23 +1,26 @@
 {
-  "name"        : "@yaireo/fakeScroll",
-  "version"     : "1.5.0",
-  "homepage"    : "https://github.com/yairEO/fakescroll",
-  "description" : "Want to simply convert an input field into a tags element, in a easy customizable way, with good performance and smallest code footprint? You are in the right place my friend.",
-  "_npmUser"    : {
-    "name"  : "vsync",
-    "email" : "vsync.design@gmail.com"
+  "name": "@yaireo/fakeScroll",
+  "version": "2.0.0",
+  "homepage": "https://github.com/yairEO/fakescroll",
+  "description": "Want to simply convert an input field into a tags element, in a easy customizable way, with good performance and smallest code footprint? You are in the right place my friend.",
+  "_npmUser": {
+    "name": "vsync",
+    "email": "vsync.design@gmail.com"
   },
   "author": {
-    "name"  : "Yair Even-Or",
-    "email" : "vsync.design@gmail.com"
+    "name": "Yair Even-Or",
+    "email": "vsync.design@gmail.com"
   },
-  "main"        : "jQuery.fakeScroll.js",
-  "repository"  : {
-    "type" : "git",
-    "url"  : "git+https://github.com/yairEO/fakescroll.git"
+  "main": "fakeScroll.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yairEO/fakescroll.git"
   },
   "bugs": {
     "url": "https://github.com/yaireo/fakescroll/issues"
   },
-  "devDependencies": {}
+  "devDependencies": {
+  },
+  "dependencies": {
+  }
 }
