@@ -1,5 +1,5 @@
 {
-  "name": "@yaireo/fakeScroll",
+  "name": "@yaireo/fakescroll",
   "version": "2.0.0",
   "homepage": "https://github.com/yairEO/fakescroll",
   "description": "Want to simply convert an input field into a tags element, in a easy customizable way, with good performance and smallest code footprint? You are in the right place my friend.",
@@ -15,6 +15,9 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/yairEO/fakescroll.git"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "bugs": {
     "url": "https://github.com/yaireo/fakescroll/issues"
