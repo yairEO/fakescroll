@@ -44,6 +44,7 @@
 
             targetElm.insertAdjacentHTML('afterbegin', scopeHTML);
 
+            DOM.scope = targetElm;
             DOM.scrollWrap = targetElm.firstElementChild;
             DOM.scrollContent = DOM.scrollWrap.firstElementChild;
             DOM.scrollContent.appendChild(fragment);
@@ -52,6 +53,10 @@
             DOM.bar = DOM.track.firstElementChild;
 
             return DOM;
+        },
+
+        destroy(){
+            this.events.off.call(this, window, 'resize', 'onScrollResize');
         },
 
         events : {
@@ -73,9 +78,10 @@
             },
 
             binding(DOM){
-                this.events.on.call(this, DOM.scrollContent, 'scroll mouseenter', 'onScrollResize')
-                           .on.call(this, window, 'resize', 'onScrollResize')
+                this.events.on.call(this, DOM.scrollContent, 'scroll', 'onScrollResize')
+                           .on.call(this, DOM.scope, 'mouseenter', 'onScrollResize')
                            .on.call(this, DOM.bar, 'mousedown', 'onBarMouseDown')
+                           .on.call(this, window, 'resize', 'onScrollResize')
 
                 if( this.settings.track )
                     this.events.on.call(this, DOM.track, 'click', 'onTrackClick')
@@ -93,7 +99,11 @@
 
             callbacks : {
                 onScrollResize(e){
-                    this.moveBar.call(this)
+                    this.moveBar.call(this);
+
+                    // debounce - get track bounds
+                    clearTimeout(this.listeners.timeout__resize);
+                    this.listeners.timeout__resize = setTimeout(this.getTrackBounds.bind(this), 200)
                 },
 
                 onDrag(e){
@@ -101,7 +111,11 @@
                     this.state.lastPageY = e.pageY;
 
                     raf(() => {
-                        this.DOM.scrollContent.scrollTop += delta / this.scrollRatio;
+                        var sTop = document.documentElement.scrollTop,
+                            isDragWithinTrackBounds = e.pageY >= (this.state.trackBounds.top + sTop) && e.pageY <= (this.state.trackBounds.bottom + sTop);
+
+                        if( isDragWithinTrackBounds )
+                            this.DOM.scrollContent.scrollTop += delta / this.state.scrollRatio;
                     });
                 },
 
@@ -121,10 +135,7 @@
                 onTrackClick(e){
                     if( this.state.drag ) return;
 
-                    var bounds       = e.target.getBoundingClientRect(),
-                        styles       = window.getComputedStyle(e.target, null),
-                        boundsPad    = [parseInt(styles.paddingTop, 10), 0, parseInt(styles.paddingBottom, 10), 0],
-                        perc         = (e.clientY - bounds.top) / (bounds.height - boundsPad[0] - boundsPad[2]),
+                    var perc         = (e.clientY - this.state.trackBounds.top) / (this.state.trackBounds.height - this.state.trackBounds.topPad - this.state.trackBounds.bottomPad),
                         scrollHeight = this.DOM.scrollContent.scrollHeight,
                         ownHeight    = this.DOM.scrollWrap.clientHeight,
                         newScrollTop = perc * (scrollHeight - ownHeight);
@@ -139,8 +150,15 @@
             }
         },
 
-        destroy(){
-            this.events.off.call(this, window, 'resize', 'onScrollResize');
+        getTrackBounds(){
+            var bounds = this.DOM.track.getBoundingClientRect(),
+                styles = window.getComputedStyle(this.DOM.track, null);
+
+            bounds.topPad = parseInt(styles.paddingTop, 10);
+            bounds.bottomPad = parseInt(styles.paddingBottom, 10);
+
+            this.state.trackBounds = bounds;
+            return bounds;
         },
 
         moveBar(){
@@ -150,7 +168,7 @@
                 scrollHeight = _scrollContent.scrollHeight,
                 ownHeight   = this.DOM.scrollWrap.clientHeight;
 
-            this.scrollRatio = ownHeight / scrollHeight;
+            this.state.scrollRatio = ownHeight / scrollHeight;
 
             // update fake scrollbar location on the Y axis using requestAnimationFrame
             raf(()=> {
