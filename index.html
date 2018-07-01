@@ -62,7 +62,7 @@
                 width: 12px;
             }
 
-            .foo--inside .fakeScroll__bar{ background: #252233; }
+            .foo--inside .fakeScroll__bar{ background: #252233; border-radius: 20px 0 0 20px; }
 
             .foo--inside:hover .fakeScroll__bar.fakeScroll--grabbed{
                 background: #3c3b52;
@@ -76,6 +76,9 @@
             <div class='foo foo--outside'>
                 <h2>This text can be edited</h2>
                 <h3>In this example the scrollbar is outside of the scrollable area and the "track" is not enabled</h3>
+                <xmp>
+document.querySelector('.foo--outside').fakeScroll();
+                </xmp>
                 <p>Uber lightweight &amp; robust scrollbar replacement jQuery plugin. The internet deserves a performant custom scrollbar script that is flexible, easy to use and only weights 4k.</p>
                 <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.</p>
                 <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.</p>
@@ -105,7 +108,12 @@
         <section>
             <div class='foo foo--inside'>
                 <h2>This text can be edited</h2>
-                <h3>In this example the scrollbar is within the scrollable area and has an offset from the top and bottom (via CSS). The scrollbar also has the "track" setting enabled</h3>
+                <h3>In this example the scrollbar is within the scrollable area and has an offset from the top and bottom (via CSS). The "track" setting enabled &amp; set to "smooth"</h3>
+                <xmp>
+document.querySelector('.foo--inside').fakeScroll({
+    track : "smooth"
+});
+                </xmp>
                 <p>Uber lightweight &amp; robust scrollbar replacement jQuery plugin. The internet deserves a performant custom scrollbar script that is flexible, easy to use and only weights 4k.</p>
                 <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.</p>
                 <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.</p>
