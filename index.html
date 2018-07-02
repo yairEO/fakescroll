@@ -24,9 +24,11 @@
                 background-image: -moz-radial-gradient(   top, circle cover, #3c3b52 0%, #252233 100%);
                 background-image: -o-radial-gradient(     top, circle cover, #3c3b52 0%, #252233 100%);
                 background-image: radial-gradient(        top, circle cover, #3c3b52 0%, #252233 100%);
+                background: #252233;
             }
 
-            .foo{ position:absolute; top:0; right:0; bottom:0; left:0; margin:auto; min-height:70%; height:1px; width:500px; }
+            .foo{ position:absolute; top:0; right:0; bottom:0; left:0; margin:auto; min-height:70%; height:1px; width:500px; overflow:auto; background:white; }
+            .foo.fakeScroll__scope{ background:none; }
             .foo .fakeScroll__content{ padding-top:1em; padding-bottom:1em; }
             .foo .fakeScroll__wrap{ background:#FFF; border-radius:4px; -moz-box-sizing:border-box; box-sizing:border-box; }
 

@@ -1,3 +1,5 @@
+.fakeScroll__scope{ overflow:visible !important; }
+
 .fakeScroll__wrap{
     overflow : hidden;
     height   : 100%;

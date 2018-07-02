@@ -51,6 +51,8 @@
             DOM.track = DOM.scrollWrap.nextElementSibling;
             DOM.bar = DOM.track.firstElementChild;
 
+            DOM.scope.classList.add("fakeScroll__scope");
+
             return DOM;
         },
 
