@@ -109,14 +109,13 @@
 
                 onDrag(e){
                     var delta = e.pageY - this.state.lastPageY;
-                    this.state.lastPageY = e.pageY;
 
                     raf(() => {
                         var sTop = document.documentElement.scrollTop,
                             isDragWithinTrackBounds = e.pageY >= (this.state.trackBounds.top + sTop) && e.pageY <= (this.state.trackBounds.bottom + sTop);
 
                         if( isDragWithinTrackBounds )
-                            this.DOM.scrollContent.scrollTop += delta / this.state.scrollRatio;
+                            this.DOM.scrollContent.scrollTop = this.state.drag + delta / this.state.scrollRatio;
                     });
                 },
 
@@ -127,7 +126,7 @@
                 },
 
                 onBarMouseDown(e){
-                    this.state.drag = true;
+                    this.state.drag = this.DOM.scrollContent.scrollTop;
                     this.state.lastPageY = e.pageY;
                     [this.DOM.bar, document.body].map(el => el.classList.add('fakeScroll--grabbed'))
                     this.events.drag.call(this, 'on');
