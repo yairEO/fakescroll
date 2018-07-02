@@ -1,3 +1,7 @@
+/**
+ * By Yair Even Or (C)
+ * https://github.com/yairEO/fakescroll
+ */
 ;(function(){
     raf = window.requestAnimationFrame || function(cb) { return window.setTimeout(cb, 1000 / 60) };
 
