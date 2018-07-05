@@ -120,6 +120,11 @@
 
                         if( isDragWithinTrackBounds )
                             this.DOM.scrollContent.scrollTop = this.state.drag + delta / this.state.scrollRatio;
+                        // update variables when mouse position is outside the Track bounds
+                        else{
+                            this.state.drag = this.DOM.scrollContent.scrollTop;
+                            this.state.lastPageY = e.pageY;
+                        }
                     });
                 },
 
@@ -132,6 +137,7 @@
                 onBarMouseDown(e){
                     this.state.drag = this.DOM.scrollContent.scrollTop;
                     this.state.lastPageY = e.pageY;
+
                     [this.DOM.bar, document.body].map(el => el.classList.add('fakeScroll--grabbed'))
                     this.events.drag.call(this, 'on');
                 },
@@ -172,7 +178,7 @@
                 scrollHeight = _scrollContent.scrollHeight,
                 ownHeight   = this.DOM.scrollWrap.clientHeight;
 
-            this.state.scrollRatio = ownHeight / scrollHeight;
+            this.state.scrollRatio = this.DOM.track.clientHeight / scrollHeight;
 
             // update fake scrollbar location on the Y axis using requestAnimationFrame
             raf(()=> {
