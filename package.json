@@ -1,6 +1,6 @@
 {
   "name": "@yaireo/fakescroll",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "homepage": "https://github.com/yairEO/fakescroll",
   "description": "Very lightweight & robust custom-looking HTML scrollbar script.",
   "_npmUser": {
@@ -11,7 +11,7 @@
     "name": "Yair Even-Or",
     "email": "vsync.design@gmail.com"
   },
-  "main": "fakeScroll.js",
+  "main": "fakeScroll.min.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/yairEO/fakescroll.git"

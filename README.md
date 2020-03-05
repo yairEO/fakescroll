@@ -1,18 +1,29 @@
-[fakeScroll](http://yaireo.github.io/fakescroll)
-========
+<h1 align="center">
+  <img src="/scroll.png" width="40%" />
+  <br><br>
+  <a href='https://yaireo.github.io/fakescroll'>FakeScroll</a>⚡<em>lightweight</em>, robust & custom-looking scrollbars
+</h1>
 
-Very lightweight & robust custom-looking HTML scrollbar script.
+<p align="center">
+  <a href='https://www.npmjs.com/package/@yaireo/fakescroll'>
+      <img src="https://img.shields.io/npm/v/@yaireo/fakescroll.svg" />
+  </a>
+  <img src="https://img.shields.io/bundlephobia/minzip/@yaireo/fakescroll" />
+  <img src="https://img.shields.io/npm/dw/@yaireo/fakescroll" />
+</p>
+
 
 - 1.4KB gzipped (js)
 - 4.0KB minified (js)
 - 7.7KB unminified (js)
-- ~20 KB avarage similar scripts (unminified)
+- ~20+ KB avarage similar scripts (unminified)
 
-> Currently only supports vertical scroll due to cultural norms
+> Currently only supports *vertical* scroll due to cultural norms
 
 While there is somewhat of a support for scrollbar customization [through CSS](https://atomiks.github.io/30-seconds-of-css/#custom-scrollbar), it is not fully supported
 in all browsers / older versions and the level of customization isn't flexible enough to allow creativity or certain special product needs.
 
+👉 Make sure to *import* `fakescroll.css`
 
 ## Example markup:
 
@@ -22,11 +33,11 @@ in all browsers / older versions and the level of customization isn't flexible e
         ...
     </div>
 
-## Initializing:
+## Initialize custom scrollbar:
 
     document.querySelector('.foo').fakeScroll();
 
-## The above will transform into this:
+## The above markup will now become:
 
     <div class="foo">
         <div class="fakeScroll__wrap">
