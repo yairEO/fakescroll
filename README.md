@@ -25,31 +25,44 @@ in all browsers / older versions and the level of customization isn't flexible e
 
 👉 Make sure to *import* `fakescroll.css`
 
-## Example markup:
+## [React port](https://codesandbox.io/s/react-fakescroll-4rdel)
 
-    <div class="foo">
-        ...
-        ...
-        ...
-    </div>
+```js
+import FakeScroll from "@yaireo/fakescroll/react.fakescroll.js"
+import "@yaireo/fakescroll/fakescroll.css"
+
+<FakeScroll className="foo" track="smooth">
+    ...
+</FakeScroll>
+```
+
+## Example markup:
+```html
+<div class="foo">
+    ...
+    ...
+    ...
+</div>
+```
 
 ## Initialize custom scrollbar:
-
-    document.querySelector('.foo').fakeScroll();
+```js
+document.querySelector('.foo').fakeScroll();
+```
 
 ## The above markup will now become:
-
-    <div class="foo">
-        <div class="fakeScroll__wrap">
-            <div class="fakeScroll__content">
-                ...
-                ...
-                ...
-            </div>
+```html
+<div class="foo fakeScroll fakeScroll--hasBar">
+    <div class="fakeScroll__wrap">
+        <div class="fakeScroll__content">
+            ...
+            ...
+            ...
         </div>
-        <div class="fakeScroll__bar"></div>
     </div>
-
+    <div class="fakeScroll__bar"></div>
+</div>
+```
 ## Browser support
 
 The script probably won't work on IE without [Babel](https://babeljs.io/docs/en/babel-cli) & [ES2015 polyfills](https://github.com/paulmillr/es6-shim).
