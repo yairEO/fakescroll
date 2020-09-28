@@ -8,17 +8,17 @@
     function FakeScroll(targetElm, settings){
         if( !targetElm ) return;
 
-        this.settings = Object.assign({}, this.defaults, settings || {});
-        this.callback = settings.callback ? settings.callback : null;
+        this.settings = Object.assign({}, this.defaults, settings || {})
+        this.callback = settings.callback ? settings.callback : null
 
-        this.state = {};
-        this.listeners = {};
+        this.state = {}
+        this.listeners = {}
 
-        this.DOM = this.build(targetElm);
-        this.events.binding.call(this, this.DOM);
+        this.DOM = this.build(targetElm)
+        this.events.binding.call(this, this.DOM)
 
         // run "moveBar" once
-        setTimeout(this.moveBar.bind(this));
+        setTimeout(this.events.callbacks.onScrollResize.bind(this))
     }
 
     FakeScroll.prototype = {
@@ -55,7 +55,7 @@
             DOM.track = DOM.scrollWrap.nextElementSibling;
             DOM.bar = DOM.track.firstElementChild;
 
-            DOM.scope.classList.add("fakeScroll__scope");
+            DOM.scope.classList.add("fakeScroll");
 
             return DOM;
         },
@@ -103,8 +103,9 @@
             },
 
             callbacks : {
-                onScrollResize(e){
+                onScrollResize(){
                     this.moveBar.call(this);
+                    this.DOM.scope.classList.toggle('fakeScroll--hasBar', this.state.scrollRatio < 1)
 
                     // debounce - get track bounds
                     clearTimeout(this.listeners.timeout__resize);
