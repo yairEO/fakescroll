@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img src="/scroll.png" width="40%" />
+  <a href='https://yaireo.github.io/fakescroll'><img src="/scroll.png" width="40%" /></a>
   <br><br>
   <a href='https://yaireo.github.io/fakescroll'>FakeScroll</a>⚡<em>lightweight</em> custom-looking scrollbars
 </h1>
