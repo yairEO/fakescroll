@@ -11,7 +11,15 @@
     "name": "Yair Even-Or",
     "email": "vsync.design@gmail.com"
   },
-  "main": "./fakescroll.min.js",
+  "scripts": {
+    "build": "npx terser -- fakescroll.js > fakescroll.min.js"
+  },
+  "files": [
+    "fakescroll.js",
+    "react.fakescroll.js",
+    "fakescroll.css"
+  ],
+  "main": "./fakescroll.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/yairEO/fakescroll.git"

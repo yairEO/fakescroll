@@ -30,7 +30,7 @@
             .foo{ position:absolute; top:0; right:0; bottom:0; left:0; margin:auto; min-height:70%; height:1px; width:500px; overflow:auto; background:white; }
             .foo.fakeScroll__scope{ background:none; }
             .foo .fakeScroll__content{ padding-top:1em; padding-bottom:1em; }
-            .foo .fakeScroll__wrap{ background:#FFF; border-radius:4px; -moz-box-sizing:border-box; box-sizing:border-box; }
+            .foo .fakeScroll__wrap{ background:#FFF; border-radius:4px; }
 
             /* upper and bottom fades */
             .fakeScroll__wrap::before{ content:''; position:absolute; z-index:1; top:0; left:0; right:0; height:5%;
@@ -48,6 +48,10 @@
             /* .fakeScroll--inside .fakeScroll__content::after{ content:''; display:block; min-height:10000px; } */
 
 
+            .foo--inside{
+                padding-right: 2em;
+            }
+
             .foo--inside .fakeScroll__track{
                 background: rgba(0,0,0,.2);
                 right: 0;
@@ -64,7 +68,7 @@
                 width: 12px;
             }
 
-            .foo--inside .fakeScroll__bar{ background: #252233; border-radius: 20px 0 0 20px; }
+            .foo--inside .fakeScroll__bar{ background: #222; border-radius: 20px 0 0 20px; }
 
             .foo--inside:hover .fakeScroll__bar.fakeScroll--grabbed{
                 background: #3c3b52;

@@ -10,12 +10,18 @@
 .fakeScroll__content{
     height          : 100%;
     width           : 100%;
-    padding         : 0 32px 0 0;
+    /* padding         : 0 32px 0 0; */
+    /* right           : -18px; */
     position        : relative;
-    right           : -18px;
     overflow        : auto;
     -moz-box-sizing : border-box;
     box-sizing      : border-box;
+
+    scrollbar-width: none;
+}
+
+.fakeScroll__content::-webkit-scrollbar {
+    display: none;
 }
 
 .fakeScroll__track{
