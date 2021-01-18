@@ -1,6 +1,6 @@
 {
   "name": "@yaireo/fakescroll",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "homepage": "https://github.com/yairEO/fakescroll",
   "description": "Very lightweight & robust custom-looking HTML scrollbar script.",
   "_npmUser": {
@@ -30,8 +30,6 @@
   "bugs": {
     "url": "https://github.com/yaireo/fakescroll/issues"
   },
-  "devDependencies": {
-  },
-  "dependencies": {
-  }
+  "devDependencies": {},
+  "dependencies": {}
 }
