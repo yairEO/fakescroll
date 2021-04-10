@@ -18,20 +18,17 @@
             a{ position:fixed; top:10px; left:0; right:0; width:fit-content; margin:auto; color:#FFF; font-size:2em; padding:1em; opacity:.5; font-weight:700; text-decoration:none; z-index:1; }
             a:hover{ opacity:1; }
 
-            section{
-                flex: 1;
-                display: grid;
-                place-items: center;
-            }
+            section{ flex: 1; display: grid; place-items: center; }
+            section p{ color: #AAA; }
 
             .foo{
-                position:relative; min-height:70%; height:1px; width:500px; overflow:auto;
+                position:relative; min-height:50%; height:1px; width:500px; overflow:auto;
                 box-shadow: 0 0 2vw rgba(0,0,0,.5);
             }
 
             .foo.foo--inside{ background: white; border-radius: 6px; }
             .foo.fakeScroll__scope{ background:none; }
-            .foo .fakeScroll__content{ padding: 1em; }
+            .foo .fakeScroll__content{ padding: 1em; resize: both; }
             .foo .fakeScroll__wrap{ background:#FFF; border-radius:6px; }
 
             /* upper and bottom fades */
@@ -55,25 +52,25 @@
             }
 
             .foo--inside .fakeScroll__track{
-                background: rgba(0,0,0,.2);
                 right: 0;
                 top: 10%;
                 bottom: 10%;
                 z-index: 1;
-                padding: 10px 3px;
+                padding: 10px 4px;
                 border-radius: 20px 0 0 20px;
+                width: 7px;
+                cursor: pointer;
                 transition: .1s;
             }
 
             .foo--inside .fakeScroll__track:hover{
-                background: rgba(0,0,0,.1);
-                width: 12px;
+                width: 10px;
+                background: #DDD;
             }
 
-            .foo--inside .fakeScroll__bar{ background: #222; border-radius: 20px 0 0 20px; }
+            .foo--inside .fakeScroll__bar{ background:#F40076; border-radius:5px; transition:.1s box-shadow; }
 
             .foo--inside:hover .fakeScroll__bar.fakeScroll--grabbed{
-                background: #3c3b52;
             }
         </style>
     </head>
