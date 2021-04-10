@@ -87,4 +87,4 @@ Name                | Type            | Default     | Info
 ------------------- | ----------      | ----------- | --------------------------------------------------------------------------
 classname           | String          | ""          | Class name which is added to the scrollbar Track element
 track               | Boolean/String  | false       | enable track events. use "smooth" for smooth "jumping"
-onScroll            | Function        |             | Callback function whenever the scroll updates
+onChange            | Function        |             | Callback function whenever the scroll updates
