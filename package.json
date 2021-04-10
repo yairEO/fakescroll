@@ -27,7 +27,9 @@
     "url": "git+https://github.com/yairEO/fakescroll.git"
   },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "cache": "~/.npm",
+    "registry": "https://npm.pkg.github.com"
   },
   "bugs": {
     "url": "https://github.com/yaireo/fakescroll/issues"

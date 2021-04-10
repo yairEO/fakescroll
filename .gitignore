@@ -47,6 +47,7 @@ Temporary Items
 .apdisk
 /node_modules
 /test.html
+/.npm
 /.npmrc
 /.babelrc
 /test2.html
