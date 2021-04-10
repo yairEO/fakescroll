@@ -1,6 +1,6 @@
 {
   "name": "@yaireo/fakescroll",
-  "version": "2.3.0",
+  "version": "2.4.0",
   "homepage": "https://github.com/yairEO/fakescroll",
   "description": "Very lightweight & robust custom-looking HTML scrollbar script.",
   "author": {
@@ -12,7 +12,7 @@
     "build": "terser fakescroll.js --compress --mangle --output fakescroll.min.js",
     "clean": "rm -rf dist && npm run makedir",
     "makedir": "mkdirp dist",
-    "header": "headr relative-time.min.js -o=relative-time.min.js --version --homepage",
+    "header": "headr fakescroll.min.js -o=fakescroll.min.js --version --homepage",
     "version": "npm run build && npm run header && git add .",
     "prepublishOnly": "pkg-ok"
   },
