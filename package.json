@@ -12,7 +12,13 @@
     "email": "vsync.design@gmail.com"
   },
   "scripts": {
-    "build": "npx terser -- fakescroll.js > fakescroll.min.js"
+    "start": "npm run build",
+        "build"         : "terser fakescroll.js --compress --mangle --output fakescroll.min.js",
+        "clean"         : "rm -rf dist && npm run makedir",
+        "makedir"       : "mkdirp dist",
+        "header"        : "headr relative-time.min.js -o=relative-time.min.js --version --homepage",
+        "version"       : "npm run build && npm run header && git add .",
+        "prepublishOnly": "pkg-ok"
   },
   "files": [
     "fakescroll.js",
@@ -30,6 +36,10 @@
   "bugs": {
     "url": "https://github.com/yaireo/fakescroll/issues"
   },
-  "devDependencies": {},
-  "dependencies": {}
+  "devDependencies": {
+      "headr": "^0.0.4",
+      "mkdirp": "^1.0.4",
+      "rimraf": "^3.0.2",
+      "terser": "^5.6.1"
+  }
 }
