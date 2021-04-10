@@ -1,8 +1,14 @@
-/**
- * By Yair Even Or (C)
- * https://github.com/yairEO/fakescroll
- */
-;(function(){
+;(function(root, factory){
+    var define = define || {};
+    if( typeof define === 'function' && define.amd )
+        define([], factory);
+    else if( typeof exports === 'object' && typeof module === 'object' )
+        module.exports = factory();
+    else if(typeof exports === 'object')
+        exports["FakeScroll"] = factory()
+    else
+        root.FakeScroll = factory()
+  }(this, function(){
     raf = window.requestAnimationFrame || function(cb) { return window.setTimeout(cb, 1000 / 60) };
 
     function FakeScroll(targetElm, settings){
@@ -201,4 +207,6 @@
         this._fakeScroll = this._fakeScroll || new FakeScroll(this, settings || {});
         return this._fakeScroll;
     }
-})();
+
+    return FakeScroll
+}));
