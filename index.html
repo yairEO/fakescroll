@@ -11,26 +11,28 @@
 
             body{
                 margin:0; font:14px Arial;
+                display: flex;
+                background-image: linear-gradient( 135deg , #590FB7, #252233);
             }
 
-            a{ position:fixed; top:10px; left:10px; color:#FFF; font-size:1.3em; padding:1em; opacity:.5; text-decoration:none; z-index:1; }
+            a{ position:fixed; top:10px; left:0; right:0; width:fit-content; margin:auto; color:#FFF; font-size:2em; padding:1em; opacity:.5; font-weight:700; text-decoration:none; z-index:1; }
             a:hover{ opacity:1; }
 
             section{
-                border:2px solid rgba(0,0,0,.4);
-                height:100%;
-                position: relative;
-                background-image: -webkit-radial-gradient(top, circle cover, #3c3b52 0%, #252233 100%);
-                background-image: -moz-radial-gradient(   top, circle cover, #3c3b52 0%, #252233 100%);
-                background-image: -o-radial-gradient(     top, circle cover, #3c3b52 0%, #252233 100%);
-                background-image: radial-gradient(        top, circle cover, #3c3b52 0%, #252233 100%);
-                background: #252233;
+                flex: 1;
+                display: grid;
+                place-items: center;
             }
 
-            .foo{ position:absolute; top:0; right:0; bottom:0; left:0; margin:auto; min-height:70%; height:1px; width:500px; overflow:auto; background:white; }
+            .foo{
+                position:relative; min-height:70%; height:1px; width:500px; overflow:auto;
+                box-shadow: 0 0 2vw rgba(0,0,0,.5);
+            }
+
+            .foo.foo--inside{ background: white; border-radius: 6px; }
             .foo.fakeScroll__scope{ background:none; }
-            .foo .fakeScroll__content{ padding-top:1em; padding-bottom:1em; }
-            .foo .fakeScroll__wrap{ background:#FFF; border-radius:4px; }
+            .foo .fakeScroll__content{ padding: 1em; }
+            .foo .fakeScroll__wrap{ background:#FFF; border-radius:6px; }
 
             /* upper and bottom fades */
             .fakeScroll__wrap::before{ content:''; position:absolute; z-index:1; top:0; left:0; right:0; height:5%;
@@ -76,7 +78,7 @@
         </style>
     </head>
     <body>
-        <a href="https://github.com/yairEO/fakescroll">GitHub Repo »</a>
+        <a href="https://github.com/yairEO/fakescroll">GITHUB</a>
 
         <section>
             <div class='foo foo--outside'>
@@ -144,8 +146,11 @@ document.querySelector('.foo--inside').fakeScroll({
         <script src="fakescroll.js"></script>
 
         <script>
+            // first example, where the scrollbar is painted outside of the scroll area
             document.querySelector('.foo--outside').fakeScroll();
 
+            // second example, where the scrollbar is painted insde of the scroll area,
+            // with some vertical offset both from top & bottom
             document.querySelector('.foo--inside').fakeScroll({
                 track : "smooth"
             });
