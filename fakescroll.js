@@ -15,7 +15,6 @@
         if( !targetElm ) return;
 
         this.settings = Object.assign({}, this.defaults, settings || {})
-        this.callback = settings.callback ? settings.callback : null
 
         this.state = {}
         this.listeners = {}
@@ -70,6 +69,10 @@
             this.events.off.call(this, window, 'resize', 'onScrollResize');
         },
 
+        get scrollRatio(){
+            return this.state.scrollRatio
+        },
+
         events : {
             on(elm, eName, cbName){
                 // to be able tp unbind the events, callback refferece must be saved somewhere
@@ -111,7 +114,7 @@
             callbacks : {
                 onScrollResize(){
                     this.moveBar.call(this);
-                    this.DOM.scope.classList.toggle('fakeScroll--hasBar', this.state.scrollRatio < 1)
+                    this.DOM.scope.classList.toggle('fakeScroll--hasBar', this.state.ratio < 1)
 
                     // debounce - get track bounds
                     clearTimeout(this.listeners.timeout__resize);
@@ -126,7 +129,7 @@
                             isDragWithinTrackBounds = e.pageY >= (this.state.trackBounds.top + sTop) && e.pageY <= (this.state.trackBounds.bottom + sTop);
 
                         if( isDragWithinTrackBounds )
-                            this.DOM.scrollContent.scrollTop = this.state.drag + delta / this.state.scrollRatio;
+                            this.DOM.scrollContent.scrollTop = this.state.drag + delta / this.state.ratio;
                         // update variables when mouse position is outside the Track bounds
                         else{
                             this.state.drag = this.DOM.scrollContent.scrollTop;
@@ -185,7 +188,9 @@
                 scrollHeight = _scrollContent.scrollHeight,
                 ownHeight   = this.DOM.scrollWrap.clientHeight;
 
-            this.state.scrollRatio = this.DOM.track.clientHeight / scrollHeight;
+            this.state.ratio = this.DOM.track.clientHeight / scrollHeight
+            this.state.scrollRatio = this.DOM.scrollContent.scrollTop / (_scrollContent.scrollHeight - ownHeight)
+
 
             // update fake scrollbar location on the Y axis using requestAnimationFrame
             raf(()=> {
@@ -195,7 +200,10 @@
                 this.DOM.bar.style.cssText = `height  : ${height}%;
                                               top     : ${top}%;
                                               display : ${scrollHeight <= ownHeight ? 'none' : ''}`;
+
+                this.settings.onChange && this.settings.onChange({scrollRatio:this.state.scrollRatio })
             });
+
         }
     }
 

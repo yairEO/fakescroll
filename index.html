@@ -144,7 +144,12 @@ document.querySelector('.foo--inside').fakeScroll({
 
         <script>
             // first example, where the scrollbar is painted outside of the scroll area
-            document.querySelector('.foo--outside').fakeScroll();
+            var fakeScroll_1 = document.querySelector('.foo--outside').fakeScroll({
+                onChange: function({scrollRatio}){
+                    console.log( fakeScroll_1.scrollRatio )
+                }
+            });
+
 
             // second example, where the scrollbar is painted insde of the scroll area,
             // with some vertical offset both from top & bottom

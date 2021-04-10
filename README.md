@@ -45,9 +45,19 @@ import "@yaireo/fakescroll/fakescroll.css"
 </div>
 ```
 
-## Initialize custom scrollbar:
+## Initialize custom scrollbar with callback:
 ```js
-document.querySelector('.foo').fakeScroll();
+var myScrollbar = document.querySelector('.foo').fakeScroll({
+    onChange: () => console.log( myScrollbar.scrollRatio )
+})
+```
+
+The `onChange` also has a `scrollRatio` propery in its *argument*:
+
+```js
+document.querySelector('.foo--outside').fakeScroll({
+    onChange: ({ scrollRatio }) => console.log( scrollRatio )
+});
 ```
 
 ## The above markup will now become:
@@ -75,3 +85,4 @@ Name                | Type            | Default     | Info
 ------------------- | ----------      | ----------- | --------------------------------------------------------------------------
 classname           | String          | ""          | Class name which is added to the scrollbar Track element
 track               | Boolean/String  | false       | enable track events. use "smooth" for smooth "jumping"
+onScroll            | Function        |             | Callback function whenever the scroll updates
