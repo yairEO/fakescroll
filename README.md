@@ -28,10 +28,12 @@ in all browsers / older versions and the level of customization isn't flexible e
 ## [React port](https://codesandbox.io/s/react-fakescroll-4rdel)
 
 ```js
-import FakeScroll from "@yaireo/fakescroll/react.fakescroll.js"
-import "@yaireo/fakescroll/fakescroll.css"
+import FakeScroll from '@yaireo/fakescroll/react.fakescroll.js'
+import '@yaireo/fakescroll/fakescroll.css'
 
-<FakeScroll className="foo" track="smooth">
+const onFakeScrollChange = ({ scrollRatio }) => console.log(scrollRatio)
+
+<FakeScroll className='foo' track='smooth' onChange={onFakeScrollChange}>
     ...
 </FakeScroll>
 ```

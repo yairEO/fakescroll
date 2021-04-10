@@ -20,7 +20,7 @@ const reducer = (state, action) => {
     case "drag-release": return {...state, drag:false }
     case "trackBounds": return { ...state, trackBounds: action.payload }
     case "toggleSmoothScroll": return { ...state, smoothScroll: !state.smoothScroll }
-    case "scrollRatio": return { ...state, scrollRatio: action.payload }
+    case "ratio": return { ...state, ratio: action.payload }
     case "mouseEvent": return { ...state,  mouse:{ type:action.event.type, pageY:action.event.pageY }}
 
     case "barProps": {
@@ -48,7 +48,7 @@ const initialState = {
   isDragging: false,
   scrollTop: null,
   scrollTo: null,
-  scrollRatio: null,
+  ratio: null,
   lastPageY: null,
   smoothScroll: false,
   hasBar: null,
@@ -56,7 +56,7 @@ const initialState = {
   mouse: {}
 }
 
-const FakeScroll = ({ children, className, track = false, ...rest }) => {
+const FakeScroll = ({ children, className, onChange:onChangeCB, track = false, ...rest }) => {
   const [state, dispatch] = useReducer(reducer, initialState)
 
   const listeners = useRef({})
@@ -70,6 +70,13 @@ const FakeScroll = ({ children, className, track = false, ...rest }) => {
   const onMouseEvent = useCallback(e =>
     raf(() => dispatch({ type:"mouseEvent", event:e }) )
   , [dispatch])
+
+  const onScrollResize = useCallback(() => {
+    setBarGeometry()
+    // debounce - get track bounds
+    clearTimeout(listeners.current.timeout__resize)
+    listeners.current.timeout__resize = setTimeout(getTrackBounds, 200)
+  }, [])
 
   useLayoutEffect(() => {
     onScrollResize()
@@ -106,13 +113,6 @@ const FakeScroll = ({ children, className, track = false, ...rest }) => {
     document[action]("mouseup", onMouseEvent)
   }
 
-  const onScrollResize = useCallback(() => {
-    setBarGeometry()
-    // debounce - get track bounds
-    clearTimeout(listeners.current.timeout__resize)
-    listeners.current.timeout__resize = setTimeout(getTrackBounds, 200)
-  }, [])
-
   // click-holding the bar and moving it
   const onDrag = e => {
     const delta = e.pageY - state.lastPageY
@@ -124,7 +124,7 @@ const FakeScroll = ({ children, className, track = false, ...rest }) => {
                                       e.pageY <= (state.trackBounds.bottom + sTop)
 
       if (isDragWithinTrackBounds)
-        dispatch({ type:"scrollTo", to:state.scrollTop + delta/state.scrollRatio })
+        dispatch({ type:"scrollTo", to:state.scrollTop + delta/state.ratio })
 
       // update variables when cursor position is outside the Track bounds
       else
@@ -178,15 +178,18 @@ const FakeScroll = ({ children, className, track = false, ...rest }) => {
   // move th fake track bar element
   const setBarGeometry = () => {
     const scrollHeight = refs.content.current.scrollHeight,
-          ownHeight = refs.wrap.current.clientHeight
+          ownHeight = refs.wrap.current.clientHeight,
+          scrollRatio = refs.content.current.scrollTop / (refs.content.current.scrollHeight - ownHeight)
 
     // update fake scrollbar location on the Y axis using requestAnimationFrame
     raf(() => {
       const height = (ownHeight / scrollHeight) * 100,
             top = (refs.content.current.scrollTop / scrollHeight) * 100
 
-      dispatch({ type: "scrollRatio", payload: refs.track.current.clientHeight / scrollHeight })
+      dispatch({ type: "ratio", payload: refs.track.current.clientHeight / scrollHeight })
       dispatch({ type: "barProps", payload: { height, top, scrollHeight, ownHeight } })
+
+      onChangeCB && onChangeCB({ scrollRatio })
     })
   }
 
