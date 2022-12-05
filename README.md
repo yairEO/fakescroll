@@ -25,6 +25,12 @@ in all browsers / older versions and the level of customization isn't flexible e
 
 👉 Make sure to *import* `fakescroll.css`
 
+## Install ([CDN](jsdelivr.com/package/npm/@yaireo/fakescroll)):
+
+```bash
+npm i @yaireo/fakescroll
+```
+
 ## [React port](https://codesandbox.io/s/react-fakescroll-4rdel)
 
 ```js
